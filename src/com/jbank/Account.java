@@ -1,8 +1,8 @@
 package com.jbank;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Created by localadmin on 7/28/16.
@@ -38,6 +38,10 @@ public class Account {
         return balance;
     }
 
+    public void setClosed() {
+        isClosed = true;
+    }
+
     public String getId() {
         return id;
     }
@@ -49,6 +53,10 @@ public class Account {
     @Override
     public String toString() {
         return this.type.toString() + " " + this.balance + "  " + this.isClosed+ "  " + this.id + " " + this.overDraftCount;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 
     public void Deposit(float amount) throws Exception {
@@ -84,5 +92,11 @@ public class Account {
         }
     }
 
+    public ArrayList<Float> filterTransactions (TransactionType type){
+
+       return this.transactions.stream().parallel().filter(transaction -> transaction.getType() == type).map(transaction -> transaction.getAmount())
+               .collect(Collectors.toCollection(ArrayList::new));
+
+    }
 
 }
