@@ -38,4 +38,14 @@ public class BankTest {
         assertEquals(1, b.getClients().get(0).getName());
     }
 
+    @Test
+    public void testRemoveClient() throws Exception {
+        b.addClient("Bob");
+        b.addClient("John");
+
+        b.removeClient(b.getClients().get(0).getId());
+        assertEquals(2, b.getClients().size());
+        assertEquals(1, b.getClients().get(0).getAccounts().get(0).isClosed());
+    }
+
 }

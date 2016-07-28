@@ -43,7 +43,9 @@ public class Client {
     public void closeAccount(String id) throws Exception
     {
         if (!this.accounts.isEmpty()) {
-            Account[] acct = this.accounts.stream().filter(account -> account.getId() == id).toArray(Account[]::new);
+            Account[] acct = this.accounts.stream()
+                    .filter(account -> account.getId() == id)
+                    .toArray(Account[]::new);
             if (acct.length > 0 ) {
                 acct[0].setBalance(0f);
                 acct[0].setClosed();

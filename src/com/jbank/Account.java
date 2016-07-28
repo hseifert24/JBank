@@ -94,7 +94,10 @@ public class Account {
 
     public ArrayList<Float> filterTransactions (TransactionType type){
 
-       return this.transactions.stream().parallel().filter(transaction -> transaction.getType() == type).map(transaction -> transaction.getAmount())
+       return this.transactions.stream()
+               .parallel()
+               .filter(transaction -> transaction.getType() == type)
+               .map(transaction -> transaction.getAmount())
                .collect(Collectors.toCollection(ArrayList::new));
 
     }
