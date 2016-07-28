@@ -26,6 +26,10 @@ public class Account {
         this.overDraftCount = 0;
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
     public AccountType getType() {
         return type;
     }
@@ -62,8 +66,10 @@ public class Account {
             throw new AccountException("Your account is closed.");
         }
 
+        Transaction transaction;
+
         if (this.balance <= amount){
-            Transaction transaction = new Transaction(50f, TransactionType.FEE);
+            transaction = new Transaction(50f, TransactionType.FEE);
             this.balance -= transaction.getAmount();
             this.transactions.add(transaction);
             this.overDraftCount++;
@@ -72,7 +78,7 @@ public class Account {
                 this.isClosed = true;
             }
         }else {
-            Transaction transaction = new Transaction(amount, TransactionType.WITHDRAWAL);
+            transaction = new Transaction(amount, TransactionType.WITHDRAWAL);
             this.balance -= amount;
             this.transactions.add(transaction);
         }
