@@ -31,6 +31,10 @@ public class Client {
         return isActive;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     public ArrayList<Account> getAccounts() {
         return accounts;
     }
